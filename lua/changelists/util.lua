@@ -7,20 +7,36 @@ local function splitRange(range)
 	end
 end
 
-local function signPlaces(start, finish)
-	local objects = {}
-	for i = start, finish do
-		table.insert(objects, {
-			id = i,
-			name = "mySign",
-			buffer = "%",
-			lnum = i,
-		})
+--- @param a Gitsigns.Hunk.Hunk
+--- @param b Gitsigns.Hunk.Hunk
+local function comp_lines(a, b)
+	local pairs = {}
+	if a.added and b.added then
+		table.insert(pairs, { a.added.lines, b.added.lines })
 	end
-	return objects
+	if a.removed and b.removed then
+		table.insert(pairs, { a.removed.lines, b.removed.lines })
+	end
+
+	for _, p in ipairs(pairs) do
+		local arr1, arr2 = p[1], p[2]
+		print(#arr1, #arr2)
+		if #arr1 ~= #arr2 then
+			return false
+		end
+
+		for i = 1, #arr1 do
+			print(arr1[i], arr2[i])
+			if arr1[i] ~= arr2[i] then
+				return false
+			end
+		end
+	end
+
+	return true
 end
 
 return {
 	splitRange = splitRange,
-	signPlaces = signPlaces,
+	comp_lines = comp_lines,
 }

@@ -2,12 +2,12 @@
 
 == Introduction
 
-Newer versions of Neovim include an embedded lua interpreter, making it
-possible to write non-remote plugins using Lua instead of Vimscript.
+aNewer versions of Neovim include an embedded lua interpreter, making it
+possaible to write non-remote plugins using Lua instead of Vimscript.
 
-This is a minimal example of an embedded Lua plugin. When you want to create a
 new Lua plugin, you should be able start from a working plugin by running:
-
+a
+b
 ```sh
 bash \
   <(curl -o- https://raw.githubusercontent.com/jacobsimpson/nvim-example-lua-plugin/master/install.sh) \

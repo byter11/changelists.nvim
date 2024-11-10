@@ -8,7 +8,4 @@ lua <<EOF
 EOF
 
 lua require 'changelists'.setup()
-nmap <M-C-G> :lua Global_lua_function()<CR>
-nmap <M-C-L> :lua changelists.local_lua_function()<CR>
-
-lua require("changelists.definestuff").hello()
+nmap <M-C-K> :lua Print_changelist()<CR>
