@@ -20,13 +20,11 @@ local function comp_lines(a, b)
 
 	for _, p in ipairs(pairs) do
 		local arr1, arr2 = p[1], p[2]
-		print(#arr1, #arr2)
 		if #arr1 ~= #arr2 then
 			return false
 		end
 
 		for i = 1, #arr1 do
-			print(arr1[i], arr2[i])
 			if arr1[i] ~= arr2[i] then
 				return false
 			end

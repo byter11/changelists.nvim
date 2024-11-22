@@ -6,14 +6,19 @@ local cl = require("changelists.changelists")
 
 ---@type table<string, CLSubCmd>
 local subcommand_tbl = {
-	move = {
+	move_hunk = {
 		impl = function(args)
 			cl.move(args[1])
 		end,
 	},
-	stage = {
+	stage_list = {
 		impl = function(args)
 			cl.stage(args[1])
+		end,
+	},
+	show_list = {
+		impl = function(args)
+			cl.show(args[1])
 		end,
 	},
 }
@@ -24,9 +29,10 @@ local function changelists(opts)
 	local subcommand_key = fargs[1]
 	-- Get the subcommand's arguments, if any
 	local args = #fargs > 1 and vim.list_slice(fargs, 2, #fargs) or {}
+
 	local subcommand = subcommand_tbl[subcommand_key]
 	if not subcommand then
-		vim.notify("Rocks: Unknown command: " .. subcommand_key, vim.log.levels.ERROR)
+		vim.notify("Changelists: Unknown command: " .. subcommand_key, vim.log.levels.ERROR)
 		return
 	end
 	-- Invoke the subcommand
